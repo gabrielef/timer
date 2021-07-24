@@ -14,13 +14,26 @@ class Timer
         return $timer;
     }
 
-    public function start($key, int $precision = 0)
+    /**
+     * Start a new timer with name and precision and retrieve used DateTime 
+     *
+     * @param string $key
+     * @param integer $precision
+     * @return DateTime
+     */
+    public function start(string $key, int $precision = 0)
     {
         $this->timers[$key] = $this->newTimer($precision);
         return $this->timers[$key]->start;
     }
 
-    public function look($key)
+    /**
+     * Retrieve the amount of time passed of a specific timer
+     *
+     * @param string $key
+     * @return float
+     */
+    public function look(string $key)
     {
         $diff = (new \DateTime())->diff($this->timers[$key]->start);
         return round($diff->s + $diff->f, $this->timers[$key]->precision);
@@ -35,8 +48,14 @@ class Timer
     // public function pause($key)
     // {
     // }
-
-    public function end($key)
+    
+    /**
+     * Stop the timer (this will also delete the timer)
+     *
+     * @param string $key
+     * @return float
+     */
+    public function end(string $key)
     {
         $diff = (new \DateTime())->diff($this->timers[$key]->start);
         $precision = $this->timers[$key]->precision;
@@ -44,11 +63,22 @@ class Timer
         return round($diff->s + $diff->f, $precision);
     }
 
+    /**
+     * List all the available timer key
+     *
+     * @return array
+     */
     function list() {
         return array_keys($this->timers);
     }
 
-    public function has($key)
+    /**
+     * Check if $key is already used
+     *
+     * @param string $key
+     * @return boolean
+     */
+    public function has(string $key)
     {
         if (array_search($key, $this->list()) !== false) {
             return true;
@@ -56,7 +86,14 @@ class Timer
         return false;
     }
 
-    public function clear($key)
+    //TODO clear all timer
+    /**
+     * Clear a timer
+     *
+     * @param string $key
+     * @return void
+     */
+    public function clear(string $key)
     {
         unset($this->timers[$key]);
     }
