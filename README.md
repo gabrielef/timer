@@ -1,6 +1,10 @@
 # Timer
 Tiny PHP timer utility to measure time
 
+## Install 
+```console
+$ composer require gabrielef/timer
+```
 ## Usage
 Start a new timer with name and precision:
 ```php
