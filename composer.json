@@ -1,4 +1,16 @@
 {
+    "name": "gabrielef/timer",
+    "description": "Tiny PHP timer utility to measure time",
+    "keywords": ["timer", "time"],
+    "homepage": "https://github.com/gabrielef/timer",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Gabriele Formenti",
+            "email": "dr.forme@gmail.com",
+            "role": "Developer"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "gabrielef\\": "src/"
