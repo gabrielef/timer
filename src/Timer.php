@@ -15,6 +15,17 @@ class Timer
     }
 
     /**
+     * Round number to specific precision 
+     *
+     * @param int|float $time
+     * @param integer $precision
+     * @return float
+     */
+    private function roundWithPrecision($time, int $precision){
+        return round($time, $precision);
+    }
+
+    /**
      * Start a new timer with name and precision and retrieve used DateTime 
      *
      * @param string $key
@@ -36,7 +47,7 @@ class Timer
     public function look(string $key)
     {
         $diff = (new \DateTime())->diff($this->timers[$key]->start);
-        return round($diff->s + $diff->f, $this->timers[$key]->precision);
+        return $this->roundWithPrecision($diff->s + $diff->f, $this->timers[$key]->precision);
     }
 
     // //TODO
@@ -60,7 +71,7 @@ class Timer
         $diff = (new \DateTime())->diff($this->timers[$key]->start);
         $precision = $this->timers[$key]->precision;
         $this->clear($key);
-        return round($diff->s + $diff->f, $precision);
+        return $this->roundWithPrecision($diff->s + $diff->f, $precision);
     }
 
     /**
